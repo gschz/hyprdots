@@ -1,0 +1,25 @@
+# HyDE auto-generated (wallbash overwrites these)
+*.conf.bak
+*.save
+__pycache__/
+*.pyc
+
+# Sensitive data
+cliphist_favorites
+cliphist_favorites.bak
+
+# HyDE internal
+.cache/
+*.log
+
+# Editor swap files
+*.swp
+*.swo
+*~
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Backup directory
+backups/
