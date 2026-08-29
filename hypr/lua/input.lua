@@ -27,11 +27,11 @@ hl.config({
 		shadow = { enabled = 1 },
 		blur = {
 			enabled = 1,
-			size = 2,
+			size = 8,
 			passes = 3,
-			noise = 0.3,
-			contrast = 2.0,
-			new_optimizations = 1,
+			noise = 0.02,
+			contrast = 1.0,
+			new_optimizations = 0,
 		},
 	},
 })
