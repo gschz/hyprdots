@@ -67,11 +67,13 @@ sync_file "$HOME/.config/rofi/theme.rasi" "$REPO_DIR/rofi/theme.rasi"
 sync_file "$HOME/.local/share/waybar/layouts/hyprdots/gsanz.jsonc" "$REPO_DIR/share/waybar/layouts/hyprdots/gsanz.jsonc"
 sync_file "$HOME/.local/share/waybar/styles/hyprdots.css" "$REPO_DIR/share/waybar/styles/hyprdots.css"
 
-# HyDE theme
-sync_file "$HOME/.config/hyde/themes/Catppuccin Mocha/hypr.theme" "$REPO_DIR/hyde/themes/Catppuccin Mocha/hypr.theme"
-sync_file "$HOME/.config/hyde/themes/Catppuccin Mocha/kitty.theme" "$REPO_DIR/hyde/themes/Catppuccin Mocha/kitty.theme"
-sync_file "$HOME/.config/hyde/themes/Catppuccin Mocha/rofi.theme" "$REPO_DIR/hyde/themes/Catppuccin Mocha/rofi.theme"
-sync_file "$HOME/.config/hyde/themes/Catppuccin Mocha/waybar.theme" "$REPO_DIR/hyde/themes/Catppuccin Mocha/waybar.theme"
+# HyDE theme (Purple Dark)
+sync_file "$HOME/.config/hyde/themes/Purple Dark/hypr.theme" "$REPO_DIR/hyde/themes/Purple Dark/hypr.theme"
+sync_file "$HOME/.config/hyde/themes/Purple Dark/kitty.theme" "$REPO_DIR/hyde/themes/Purple Dark/kitty.theme"
+sync_file "$HOME/.config/hyde/themes/Purple Dark/rofi.theme" "$REPO_DIR/hyde/themes/Purple Dark/rofi.theme"
+sync_file "$HOME/.config/hyde/themes/Purple Dark/waybar.theme" "$REPO_DIR/hyde/themes/Purple Dark/waybar.theme"
+sync_file "$HOME/.config/hyde/themes/Purple Dark/install.sh" "$REPO_DIR/hyde/themes/Purple Dark/install.sh"
+sync_file "$HOME/.config/hyde/themes/Purple Dark/PurpleDark.colors" "$REPO_DIR/hyde/themes/Purple Dark/PurpleDark.colors"
 
 # State
 sync_file "$HOME/.local/state/hyde/staterc" "$REPO_DIR/hyde/staterc"
