@@ -29,7 +29,7 @@ git lfs pull
 
 1. Detecta archivos existentes en `~/.config/` y crea backups en `~/.config/hyprdots-backup/{timestamp}/`
 2. Usa Stow para crear symlinks de `hypr/`, `waybar/`, `kitty/`, `rofi/`, `local-lib/hyde/` hacia `~/.config/` y `~/.local/`
-3. Copia el theme `Catppuccin Mocha` y el state file `staterc`
+3. Copia el theme `Purple Dark` y el state file `staterc`
 4. Los parches HyDE se aplican via Stow (archivos completos en `local-lib/hyde/`)
 
 ## Modo `--lite`
@@ -38,7 +38,7 @@ Cuando ejecutas `./install.sh --lite`:
 
 - Se omiten los wallpapers
 - Todos los demás componentes se instalan normalmente
-- Para wallpapers después, ejecuta sin `--lite` o copia manualmente desde `hyde/themes/Catppuccin Mocha/wallpapers/`
+- Para wallpapers después, ejecuta sin `--lite` o copia manualmente desde `hyde/themes/Purple Dark/wallpapers/`
 
 ## Parches HyDE
 
@@ -80,13 +80,15 @@ hyprdots/
 │   └── modules/*.jsonc
 ├── kitty/kitty.conf        # Config Kitty
 ├── rofi/                   # Config Rofi
+├── code/                   # VS Code User settings
+│   └── settings.json
 ├── share/                  # Datos en ~/.local/share
 │   └── waybar/
 │       ├── layouts/hyprdots/gsanz.jsonc
 │       └── styles/hyprdots.css
 ├── hyde/
 │   ├── staterc
-│   └── themes/Catppuccin Mocha/
+│   └── themes/Purple Dark/
 │       ├── *.theme
 │       └── wallpapers/     # git-lfs (~47MB)
 ├── local-lib/              # Parches HyDE
