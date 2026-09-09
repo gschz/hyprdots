@@ -1,16 +1,17 @@
 # hyprdots
 
-Configuración HyDE/Hyprland de gschz — una colección curada de customizaciones HyDE que replican mi escritorio exacto sobre una instalación base de HyDE en Arch Linux.
+Configuración personal de HyDE/Hyprland para Arch Linux.
 
 ## Prerrequisitos
 
-| Requisito  | Versión          | Propósito                                        |
-| ---------- | ---------------- | ------------------------------------------------ |
-| Arch Linux | Actual           | SO objetivo                                      |
-| HyDE       | Latest (post-RC) | Framework base — **debes instalar HyDE primero** |
-| GNU Stow   | 2.x              | Gestión de symlinks                              |
-| git-lfs    | 3.x              | Almacenamiento de wallpapers                     |
-| Hyprland   | 0.56.x           | Compositor                                       |
+| Requisito  | Versión          | Propósito                      |
+| ---------- | ---------------- | ------------------------------ |
+| Arch Linux | Actual           | SO objetivo                    |
+| HyDE       | Latest (post-RC) | Framework base                 |
+| GNU Stow   | 2.x              | Gestión de symlinks            |
+| git-lfs    | 3.x              | Almacenamiento de wallpapers   |
+| Hyprland   | 0.56.x           | Compositor                     |
+| hyprglass  | 0.8.0+           | Plugin de cristal (via hyprpm) |
 
 ## Instalación
 

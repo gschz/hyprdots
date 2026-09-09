@@ -157,5 +157,6 @@ hl.window_rule({
 	name = "custom_opacity_kitty",
 	match = { class = "^(kitty)$" },
 	opacity = "0.70 0.70 1",
-	blur = true,
+	-- blur=false: hyprglass sets noblur on glassed windows itself (manage_window_blur),
+	-- Hyprland's own blur would compete with the glass effect.
 })

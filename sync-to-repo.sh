@@ -41,12 +41,13 @@ sync_file() {
 
 # Hyprland
 sync_file "$HOME/.config/hypr/hyprland.lua" "$REPO_DIR/hypr/hyprland.lua"
-for f in env.lua input.lua keybinds.lua layer_rules.lua monitors.lua window_rules.lua workspaces.lua; do
+for f in env.lua hyprglass.lua input.lua keybinds.lua layer_rules.lua monitors.lua window_rules.lua workspaces.lua; do
     sync_file "$HOME/.config/hypr/lua/$f" "$REPO_DIR/hypr/lua/$f"
 done
 sync_file "$HOME/.config/hypr/animations.conf" "$REPO_DIR/hypr/animations.conf"
 sync_file "$HOME/.config/hypr/hypridle.conf" "$REPO_DIR/hypr/hypridle.conf"
-sync_file "$HOME/.config/hypr/hyprlock.conf" "$REPO_DIR/hypr/hyprlock.conf"
+# hyprlock.conf se omite a propósito: HyDE lo regenera con rutas absolutas
+# ($HOME -> /home/gsanz) que romperían la portabilidad del repo.
 sync_file "$HOME/.config/hypr/hyprsunset.conf" "$REPO_DIR/hypr/hyprsunset.conf"
 
 # Waybar

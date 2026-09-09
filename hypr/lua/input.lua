@@ -22,14 +22,17 @@ hl.config({
 	},
 	decoration = {
 		rounding = 14,
-		active_opacity = 0.98,
+		active_opacity = 0.90,
 		inactive_opacity = 0.90,
-		shadow = { enabled = 1 },
+		-- hyprglass requires the shadow decoration in the render pipeline
+		-- (range 0 keeps it invisible): without it the glass effect does not render.
+		shadow = { enabled = 1, range = 0, },
+
 		blur = {
 			enabled = 1,
-			size = 8,
-			passes = 3,
-			noise = 0.02,
+			size = 6,
+			passes = 4,
+			noise = 0.2,
 			contrast = 1.0,
 			new_optimizations = 0,
 		},

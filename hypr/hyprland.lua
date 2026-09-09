@@ -33,7 +33,4 @@ require("window_rules")
 require("layer_rules")
 require("keybinds")
 require("workspaces")
-
--- HyprGlass disabled: plugin incompatible with Hyprland 0.56.2 (SEGV).
--- Track: https://github.com/hyprnux/hyprglass/issues/60
--- Re-enable when v0.7.1+ is released with 0.56.2 support.
+require("hyprglass")
