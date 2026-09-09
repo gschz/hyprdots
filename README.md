@@ -2,6 +2,8 @@
 
 Configuración personal de HyDE/Hyprland para Arch Linux.
 
+<img width="1920" height="1080" alt="image" src="https://github.com/user-attachments/assets/652f4e1c-6e44-44a9-954d-24092ef7da3a" />
+
 ## Prerrequisitos
 
 | Requisito  | Versión          | Propósito                      |
