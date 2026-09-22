@@ -24,6 +24,7 @@ declare -A PATCH_MAP=(
     ["color.set.sh"]="$HOME/.local/lib/hyde/color.set.sh"
     ["reload.py"]="$HOME/.local/lib/hyde/reload.py"
     ["lua_env.py"]="$HOME/.local/lib/hyde/pyutils/lua_env.py"
+    ["cliphist.sh"]="$HOME/.local/lib/hyde/cliphist.sh"
 )
 
 for src_name in "${!PATCH_MAP[@]}"; do
