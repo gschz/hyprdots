@@ -45,7 +45,7 @@ for src_name in "${!PATCH_MAP[@]}"; do
     # Verificar si hay diferencias
     if diff -q "$src" "$target" >/dev/null 2>&1; then
         echo "  $src_name: ya está parcheado (sin diferencias)"
-        ((APPLIED++))
+        APPLIED=$((APPLIED + 1))
         continue
     fi
 
@@ -55,7 +55,7 @@ for src_name in "${!PATCH_MAP[@]}"; do
     mkdir -p "$(dirname "$target")"
     cp "$src" "$target"
     echo "  $src_name: parche aplicado → $target"
-    ((APPLIED++))
+    APPLIED=$((APPLIED + 1))
 done
 
 echo ""

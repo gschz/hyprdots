@@ -23,20 +23,20 @@ sync_file() {
 
     if [[ ! -f "$src" ]]; then
         echo "  Saltando $src: no existe"
-        ((SKIPPED++))
+        SKIPPED=$((SKIPPED + 1))
         return
     fi
 
     mkdir -p "$(dirname "$dst")"
 
     if [[ -f "$dst" ]] && diff -q "$src" "$dst" >/dev/null 2>&1; then
-        ((UNCHANGED++))
+        UNCHANGED=$((UNCHANGED + 1))
         return
     fi
 
     cp "$src" "$dst"
     echo "  Copiado: $dst"
-    ((COPIED++))
+    COPIED=$((COPIED + 1))
 }
 
 # Hyprland
@@ -75,6 +75,16 @@ sync_file "$HOME/.config/hyde/themes/Purple Dark/rofi.theme" "$REPO_DIR/hyde/the
 sync_file "$HOME/.config/hyde/themes/Purple Dark/waybar.theme" "$REPO_DIR/hyde/themes/Purple Dark/waybar.theme"
 sync_file "$HOME/.config/hyde/themes/Purple Dark/install.sh" "$REPO_DIR/hyde/themes/Purple Dark/install.sh"
 sync_file "$HOME/.config/hyde/themes/Purple Dark/PurpleDark.colors" "$REPO_DIR/hyde/themes/Purple Dark/PurpleDark.colors"
+
+# Kvantum templates (wallbash: línea 1 = ruta destino, cuerpo = contenido)
+sync_file "$HOME/.config/hyde/themes/Purple Dark/kvantum/kvantum.theme" "$REPO_DIR/hyde/themes/Purple Dark/kvantum/kvantum.theme"
+sync_file "$HOME/.config/hyde/themes/Purple Dark/kvantum/kvconfig.theme" "$REPO_DIR/hyde/themes/Purple Dark/kvantum/kvconfig.theme"
+
+# Paleta qt6ct (dolphin/Qt apps; instalada por install.sh del theme)
+sync_file "$HOME/.config/hyde/themes/Purple Dark/qt6ct/PurpleDark.conf" "$REPO_DIR/hyde/themes/Purple Dark/qt6ct/PurpleDark.conf"
+
+# uwsm: env de sesión (única vía garantizada para env de usuario)
+sync_file "$HOME/.config/uwsm/env" "$REPO_DIR/uwsm/env"
 
 # State
 sync_file "$HOME/.local/state/hyde/staterc" "$REPO_DIR/hyde/staterc"
