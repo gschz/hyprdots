@@ -1,7 +1,7 @@
 -- ~/.config/hypr/lua/env.lua
--- Environment variables + exec_once commands (migrated from userprefs.conf + hyprland.conf)
-
-hl.env("WLOGOUT_STYLE", "2")
-
-hl.exec_cmd("dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP")
-hl.exec_cmd("gnome-keyring-daemon --start --components=secrets")
+-- ⚠ ESTE ARCHIVO ESTÁ SHADOWED: HyDE requiere "env" desde
+--   ~/.local/share/hypr/lua/env.lua (su template va primero en package.path),
+--   así que este archivo NUNCA se ejecuta. No agregar nada aquí.
+--
+-- Variables de entorno de usuario → ~/.config/uwsm/env
+-- (uwsm las exporta a systemd/dbus y al compositor en el arranque).

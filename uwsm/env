@@ -1,0 +1,4 @@
+# ~/.config/uwsm/env — Variables de entorno de la sesión (uwsm las exporta
+# a systemd/dbus Y al compositor al arrancar la sesión).
+
+WLOGOUT_STYLE=2

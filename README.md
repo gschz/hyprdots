@@ -43,6 +43,16 @@ Cuando ejecutas `./install.sh --lite`:
 - Todos los demás componentes se instalan normalmente
 - Para wallpapers después, ejecuta sin `--lite` o copia manualmente desde `hyde/themes/Purple Dark/wallpapers/`
 
+## Entorno (variables de usuario)
+
+**La única vía garantizada** para variables de entorno de usuario es
+`~/.config/uwsm/env` (uwsm las exporta a systemd/dbus y al compositor al
+arrancar la sesión).
+
+- `~/.config/hypr/lua/env.lua` está **shadowed**: HyDE requiere `"env"` desde
+  su template en `~/.local/share/hypr/lua/` (va primero en `package.path`),
+  así que el archivo del usuario nunca se ejecuta. Es un tombstone.
+
 ## Parches HyDE
 
 Los archivos en `local-lib/` son versiones parcheadas de scripts upstream de HyDE:
