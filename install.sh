@@ -93,6 +93,10 @@ stow -v -d "$REPO_DIR" -t "$HOME/.local/share" share 2>&1
 # local-lib → ~/.local/lib
 stow -v -d "$REPO_DIR" -t "$HOME/.local/lib" local-lib 2>&1
 
+# uwsm env (variables de entorno de la sesión; ver README → Entorno)
+mkdir -p "$HOME/.config/uwsm"
+stow -v -d "$REPO_DIR" -t "$HOME/.config" uwsm 2>&1
+
 # hyde staterc → ~/.local/state/hyde/
 # stow no maneja bien un solo archivo con destino anidado, así que lo copiamos
 HYDE_STATE="$HOME/.local/state/hyde"
@@ -119,6 +123,14 @@ done
 if [[ -d "$REPO_DIR/hyde/themes/Purple Dark/kvantum" ]]; then
     mkdir -p "$HYDE_THEME_DIR/kvantum"
     cp -a "$REPO_DIR/hyde/themes/Purple Dark/kvantum/." "$HYDE_THEME_DIR/kvantum/"
+fi
+if [[ -d "$REPO_DIR/hyde/themes/Purple Dark/gtk" ]]; then
+    mkdir -p "$HYDE_THEME_DIR/gtk"
+    cp -a "$REPO_DIR/hyde/themes/Purple Dark/gtk/." "$HYDE_THEME_DIR/gtk/"
+fi
+if [[ -d "$REPO_DIR/hyde/themes/Purple Dark/qt6ct" ]]; then
+    mkdir -p "$HYDE_THEME_DIR/qt6ct"
+    cp -a "$REPO_DIR/hyde/themes/Purple Dark/qt6ct/." "$HYDE_THEME_DIR/qt6ct/"
 fi
 for f in "$REPO_DIR/hyde/themes/Purple Dark/wall.awww.png" "$REPO_DIR/hyde/themes/Purple Dark/wall.hyprlock.png"; do
     [[ -f "$f" ]] && cp -a "$f" "$HYDE_THEME_DIR/"
