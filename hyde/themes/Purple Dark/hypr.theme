@@ -1,11 +1,13 @@
 # Purple Dark Theme for HyDE
 
-$GTK_THEME=Adwaita-dark
-$ICON_THEME=Tela-circle-dracula
-$COLOR_SCHEME=prefer-dark
+$GTK_THEME = PurpleDark
+$ICON_THEME = Tela-circle-black
+$COLOR_SCHEME = prefer-dark
 
 exec = gsettings set org.gnome.desktop.interface icon-theme $ICON_THEME
 exec = gsettings set org.gnome.desktop.interface gtk-theme $GTK_THEME
+exec = gsettings set org.gnome.desktop.interface cursor-theme Bibata-Modern-Ice
+exec = gsettings set org.gnome.desktop.interface cursor-size 18
 exec = gsettings set org.gnome.desktop.interface color-scheme $COLOR_SCHEME
 
 general {

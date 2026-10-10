@@ -11,5 +11,5 @@ hl.monitor({
 
 hl.monitor({
 	output = "HDMI-A-1",
-	disabled = true,
+	disabled = false,
 })
