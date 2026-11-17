@@ -68,7 +68,9 @@ local opacity_classes = {
 	"^(steamwebhelper)$",
 }
 
-local opacity_value = string.format("%.2f %.2f 1", OPACITY_DEFAULT, OPACITY_DEFAULT)
+-- Third value is the FULLSCREEN opacity. Keep it equal to the others: with 1.0
+-- every fullscreen/maximized window is opaque and hyprglass skips it (no glass).
+local opacity_value = string.format("%.2f %.2f %.2f", OPACITY_DEFAULT, OPACITY_DEFAULT, OPACITY_DEFAULT)
 
 for _, class in ipairs(opacity_classes) do
 	hl.window_rule({
@@ -150,13 +152,21 @@ hl.window_rule({
 hl.window_rule({
 	name = "custom_opacity_spotify",
 	match = { class = "^([Ss]potify)$" },
-	opacity = "0.75 0.75 1",
+	opacity = "0.75 0.75 0.75",
 })
 
 hl.window_rule({
 	name = "custom_opacity_kitty",
 	match = { class = "^(kitty)$" },
-	opacity = "0.70 0.70 1",
+	opacity = "0.70 0.70 0.70",
 	-- blur=false: hyprglass sets noblur on glassed windows itself (manage_window_blur),
 	-- Hyprland's own blur would compete with the glass effect.
+})
+
+-- HyDE's default browser is brave-origin-nightly; it is not in opacity_classes,
+-- so without this rule the browser stays fully opaque and gets no glass.
+hl.window_rule({
+	name = "custom_opacity_brave_origin",
+	match = { class = "^(brave-origin-nightly)$" },
+	opacity = opacity_value,
 })

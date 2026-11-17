@@ -14,7 +14,7 @@ hl.config({
 		kb_variant = "intl",
 		follow_mouse = 1,
 		numlock_by_default = true,
-		sensitivity = 0.5,
+		sensitivity = 1,
 		force_no_accel = false,
 		touchpad = {
 			natural_scroll = true,
@@ -22,8 +22,8 @@ hl.config({
 	},
 	decoration = {
 		rounding = 14,
-		active_opacity = 1,
-		inactive_opacity = 0.90,
+		active_opacity = 0.80,
+		inactive_opacity = 0.75,
 		-- hyprglass requires the shadow decoration in the render pipeline
 		-- (range 0 keeps it invisible): without it the glass effect does not render.
 		shadow = { enabled = 1, range = 0 },

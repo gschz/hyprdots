@@ -39,6 +39,22 @@ sync_file() {
     COPIED=$((COPIED + 1))
 }
 
+sync_file_portable() {
+    local src="$1"
+    local dst="$2"
+    local tmp
+
+    # HyDE rewrites some generated state with absolute paths (waybar.py resolves
+    # them before writing). Restore $HOME so the repo stays portable. bash
+    # expands it when the file is sourced, and waybar.py falls back to
+    # WAYBAR_LAYOUT_NAME when the path does not exist.
+    # Transform first so the copy/unchanged counters stay honest.
+    tmp="$(mktemp)"
+    sed "s|$HOME|\$HOME|g" "$src" >"$tmp"
+    sync_file "$tmp" "$dst"
+    rm -f "$tmp"
+}
+
 # Hyprland
 sync_file "$HOME/.config/hypr/hyprland.lua" "$REPO_DIR/hypr/hyprland.lua"
 for f in env.lua hyprglass.lua input.lua keybinds.lua layer_rules.lua monitors.lua window_rules.lua workspaces.lua; do
@@ -84,10 +100,13 @@ sync_file "$HOME/.config/hyde/themes/Purple Dark/kvantum/kvconfig.theme" "$REPO_
 sync_file "$HOME/.config/hyde/themes/Purple Dark/qt6ct/PurpleDark.conf" "$REPO_DIR/hyde/themes/Purple Dark/qt6ct/PurpleDark.conf"
 
 # uwsm: env de sesión (única vía garantizada para env de usuario)
+# env.d/20-user.sh: HyDE sobrescribe uwsm/env en cada restore, así que las
+# variables propias van en env.d (uwsm lo carga automáticamente).
 sync_file "$HOME/.config/uwsm/env" "$REPO_DIR/uwsm/env"
+sync_file "$HOME/.config/uwsm/env.d/20-user.sh" "$REPO_DIR/uwsm/env.d/20-user.sh"
 
 # State
-sync_file "$HOME/.local/state/hyde/staterc" "$REPO_DIR/hyde/staterc"
+sync_file_portable "$HOME/.local/state/hyde/staterc" "$REPO_DIR/hyde/staterc"
 
 # Local-lib
 sync_file "$HOME/.local/lib/hyde/cliphist.sh" "$REPO_DIR/local-lib/hyde/cliphist.sh"

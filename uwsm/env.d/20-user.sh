@@ -1,0 +1,1 @@
+export WLOGOUT_STYLE=2

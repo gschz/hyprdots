@@ -1,12 +1,15 @@
 -- HyprGlass (Liquid Glass) - conservative config.
--- Requires hyprglass v0.8.0+ (Hyprland 0.56.2 support).
+-- Uses the prebuilt v1.2.0 .so (built for Hyprland 0.57.2, links libaquamarine.so.15).
+-- hyprpm is gone from this system (its package was removed by an update), so we
+-- load the plugin binary directly instead of going through hyprpm.
 -- Delete this file + its require() from hyprland.lua to roll back completely.
 
--- hyprpm loads the plugin after Hyprland starts, so it is not available when
--- this config first runs. Reload config once the plugin is in.
+-- The plugin loads after Hyprland starts, so it is not available when this
+-- config first runs. Load it and reload the config once it is in.
 if not hl.plugin.hyprglass then
 	hl.on("hyprland.start", function()
-		hl.exec_cmd("/usr/bin/hyprpm reload && /usr/bin/hyprctl reload")
+		hl.exec_cmd("/usr/bin/hyprctl plugin load " .. os.getenv("HOME") .. "/.local/share/hyprglass/hyprglass.so")
+		hl.exec_cmd("/usr/bin/hyprctl reload")
 	end)
 end
 
@@ -18,8 +21,8 @@ if hl.plugin.hyprglass then
 	-- Edit these numbers to taste — each has its range in the comment.
 	hg.preset("boost", {
 		inherits = "glass",
-		glass_opacity = 1.0,             -- 0.0-1.0 overall glass opacity (1.0 = max)
-		blur_strength = 3.0,             -- blur radius scale (x12 px)
+		glass_opacity = 0.9,             -- 0.0-1.0 overall glass opacity (1.0 = max)
+		blur_strength = 1.0,             -- blur radius scale (x12 px)
 		blur_iterations = 5,             -- 1-5 gaussian passes
 		refraction_strength = 1.0,       -- 0.0-1.0 edge refraction
 		chromatic_aberration = 0.9,      -- 0.0-1.0 spectral dispersion
@@ -39,10 +42,10 @@ if hl.plugin.hyprglass then
 
 	hg.preset("intense", {
 		inherits = "glass",
-		glass_opacity = 2.0,
+		glass_opacity = 2.0,             -- ranges are typical values, not limits
 		blur_strength = 4.0,
 		blur_iterations = 4,
-		refraction_strength = 6.0,
+		refraction_strength = 6.0,       -- "glass" itself uses 8.0
 		dark  = { brightness = 1.0, saturation = 0.6, contrast = 1.4, adaptive_dim = 0.2 },
 		light = { brightness = 1.0, saturation = 0.3, contrast = 1.0, adaptive_dim = 0.0 },
 	})
@@ -54,10 +57,11 @@ if hl.plugin.hyprglass then
 		-- blur:new_optimizations hides the glass on static windows
 		manage_window_blur = true,
 		-- layers (waybar/swaync) stay OFF: keeps current layer blur untouched
-		layers = { enabled = 0 },
+		layers = { enabled = false },
 	})
 
-	-- Per-window overrides: heaviest windows stay glass-free
+	-- Per-window overrides: heaviest windows stay glass-free.
+	-- NOTE: no fullscreen rule here. Hyprland's fullscreen match tagged every
+	-- maximized window as disabled, killing the glass in daily use.
 	hl.window_rule({ match = { class = "^(firefox|librewolf|zen|brave-browser|chromium)$" }, tag = "+hyprglass_disabled" })
-	hl.window_rule({ match = { fullscreen = true }, tag = "+hyprglass_disabled" })
 end

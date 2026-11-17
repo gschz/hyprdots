@@ -21,14 +21,14 @@ end
 -- Press SUPER + / to see active keybinds.
 
 -- Global opacity setting for window rules.
-OPACITY_DEFAULT = 0.90
+OPACITY_DEFAULT = 1
 
 -- Load local modules from ./lua/
 package.path = package.path .. ";" .. os.getenv("HOME") .. "/.config/hypr/lua/?.lua"
 
 require("monitors")
 require("input")
-require("env")
+-- require("env")
 require("window_rules")
 require("layer_rules")
 require("keybinds")

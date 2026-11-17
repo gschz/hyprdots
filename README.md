@@ -6,14 +6,31 @@ Configuración personal de HyDE/Hyprland para Arch Linux.
 
 ## Prerrequisitos
 
-| Requisito  | Versión          | Propósito                      |
-| ---------- | ---------------- | ------------------------------ |
-| Arch Linux | Actual           | SO objetivo                    |
-| HyDE       | Latest (post-RC) | Framework base                 |
-| GNU Stow   | 2.x              | Gestión de symlinks            |
-| git-lfs    | 3.x              | Almacenamiento de wallpapers   |
-| Hyprland   | 0.56.x           | Compositor                     |
-| hyprglass  | 0.8.0+           | Plugin de cristal (via hyprpm) |
+| Requisito  | Versión          | Propósito                         |
+| ---------- | ---------------- | --------------------------------- |
+| Arch Linux | Actual           | SO objetivo                       |
+| HyDE       | Latest (post-RC) | Framework base                    |
+| GNU Stow   | 2.x              | Gestión de symlinks               |
+| git-lfs    | 3.x              | Almacenamiento de wallpapers      |
+| Hyprland   | 0.57.2           | Compositor                        |
+| hyprglass  | 1.2.0            | Plugin de cristal (release `.so`) |
+
+### hyprglass
+
+Se instala el binario precompilado del release correspondiente a la línea de
+Hyprland en uso (no via `hyprpm`):
+
+```bash
+# ~/.local/share/hyprglass/hyprglass.so
+# Cargado desde el hook hyprland.start de hypr/lua/hyprglass.lua
+```
+
+Si el `.so` está compilado para otra versión de Hyprland, el plugin carga pero
+queda pausado y `hyprctl hyprglass` devuelve "unknown request". Verifica con:
+
+```bash
+hyprctl hyprglass status   # debe decir: active + version check: match
+```
 
 ## Instalación
 
@@ -57,11 +74,12 @@ arrancar la sesión).
 
 Los archivos en `local-lib/` son versiones parcheadas de scripts upstream de HyDE:
 
-| Archivo        | Modificación                                                  |
-| -------------- | ------------------------------------------------------------- |
-| `color.set.sh` | Variables dcol_rgb extendidas, sed de reemplazo mejorado      |
-| `reload.py`    | Targets `python`, `lua`, `cache`, `theme` + manejo de errores |
-| `lua_env.py`   | Gestor de entorno Lua con luarocks del sistema                |
+| Archivo        | Modificación                                                    |
+| -------------- | --------------------------------------------------------------- |
+| `color.set.sh` | Variables dcol_rgb extendidas, sed de reemplazo mejorado        |
+| `reload.py`    | Targets `python`, `lua`, `cache`, `theme` + manejo de errores   |
+| `lua_env.py`   | Gestor de entorno Lua con luarocks del sistema + `--force-lock` |
+| `cliphist.sh`  | Gestor de portapapeles con favoritos sensibles y fixes de rofi  |
 
 Después de cada actualización de HyDE, ejecuta:
 

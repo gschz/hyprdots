@@ -6,32 +6,11 @@ favorites_file="$cache_dir/landing/cliphist_favorites"
 [ -f "$HOME/.cliphist_favorites" ] && favorites_file="$HOME/.cliphist_favorites"
 cliphist_style="${ROFI_CLIPHIST_STYLE:-clipboard}"
 
-# Override get_rofi_pos to fix fractional scaling bug (e.g., scale 1.3333334)
-# HyDE's original version strips the dot from scale causing monRes to become 0
-# Also avoids negative offsets which can cause parse errors in some rofi versions
-get_rofi_pos() {
-    [[ -n $HYPRLAND_INSTANCE_SIGNATURE ]] || return 1
-    local curPos_x curPos_y
-    read -r curPos_x curPos_y < <(hyprctl cursorpos -j | jq -r '.x,.y')
-    local mon_width mon_height mon_scale mon_x mon_y
-    read -r mon_width mon_height mon_scale mon_x mon_y < <(
-        hyprctl -j monitors | jq -r '.[] | select(.focused==true) | "\(.width) \(.height) \(.scale) \(.x) \(.y)"'
-    )
-    local off_left off_top off_right off_bottom
-    read -r off_left off_top off_right off_bottom < <(
-        hyprctl -j monitors | jq -r '.[] | select(.focused==true) | .reserved | join(" ")'
-    )
-    # Use awk for correct floating-point scale handling
-    mon_width=$(awk "BEGIN {printf \"%d\", $mon_width * 100 / ($mon_scale * 100)}")
-    mon_height=$(awk "BEGIN {printf \"%d\", $mon_height * 100 / ($mon_scale * 100)}")
-    curPos_x=$((curPos_x - mon_x))
-    curPos_y=$((curPos_y - mon_y))
-    # Use center anchor with positive offsets to avoid negative value parse errors
-    local x_off y_off
-    x_off=$((curPos_x - mon_width / 2))
-    y_off=$((curPos_y - mon_height / 2))
-    echo "window{location:center;anchor:center;x-offset:${x_off}px;y-offset:${y_off}px;}"
-}
+# get_rofi_pos comes from `hyde-shell init` (export -f). Upstream now handles
+# fractional scaling itself (get_monitor_scale), and anchors the menu to the
+# cursor so it grows away from the screen edge. The old local override centred
+# the window on the cursor instead, which parked the menu at the top edge when
+# opened from the top bar.
 
 # Migrate old format (plain base64) to new format (normal:base64 or sensitive:base64)
 migrate_favorites_format() {
