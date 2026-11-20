@@ -1,0 +1,15 @@
+[SddmGreeterTheme]
+Name=Violet Noir
+Description=Violet Noir
+Author=keyitdev
+Website=https://github.com/Keyitdev/sddm-astronaut-theme
+License=GPL-3.0-or-later
+Type=sddm-theme
+Version=1.4
+ConfigFile=Themes/violet-noir.conf
+Screenshot=Backgrounds/violet-noir.png
+MainScript=Main.qml
+TranslationsDirectory=translations
+Theme-Id=violet-noir-sddm
+Theme-API=2.0
+QtVersion=6

@@ -60,15 +60,18 @@ Cuando ejecutas `./install.sh --lite`:
 - Todos los demás componentes se instalan normalmente
 - Para wallpapers después, ejecuta sin `--lite` o copia manualmente desde `hyde/themes/Purple Dark/wallpapers/`
 
-## Entorno (variables de usuario)
+## Tema SDDM — Violet Noir (opt-in)
 
-**La única vía garantizada** para variables de entorno de usuario es
-`~/.config/uwsm/env` (uwsm las exporta a systemd/dbus y al compositor al
-arrancar la sesión).
+Tema de pantalla de login para SDDM (Qt6), construido sobre
+[sddm-astronaut-theme](https://github.com/Keyitdev/sddm-astronaut-theme) como
+variante **Violet Noir**.
 
-- `~/.config/hypr/lua/env.lua` está **shadowed**: HyDE requiere `"env"` desde
-  su template en `~/.local/share/hypr/lua/` (va primero en `package.path`),
-  así que el archivo del usuario nunca se ejecuta. Es un tombstone.
+```bash
+sddm/install.sh --activate   # instala (sudo) y activa el tema
+sddm/sync-to-repo.sh         # cambios del tema instalado → repo
+```
+
+![Violet Noir — pantalla de login](./sddm/screenshot.png)
 
 ## Parches HyDE
 
@@ -129,6 +132,8 @@ hyprdots/
 │       ├── reload.py
 │       └── pyutils/
 │           └── lua_env.py
+├── sddm/                   # Tema SDDM Violet Noir (opt-in)
+│   └── themes/violet-noir-sddm/
 └── patches/                # Documentación de parches
     └── README.md
 ```
